@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'Marker Felt';
+    src: url('MarkerFelt-Wide.eot');
+    src: local('Marker Felt Wide'), local('MarkerFelt-Wide'),
+        url('MarkerFelt-Wide.eot?#iefix') format('embedded-opentype'),
+        url('MarkerFelt-Wide.woff2') format('woff2'),
+        url('MarkerFelt-Wide.woff') format('woff'),
+        url('MarkerFelt-Wide.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Marker Felt';
+    src: url('MarkerFelt-Thin.eot');
+    src: local('Marker Felt Thin'), local('MarkerFelt-Thin'),
+        url('MarkerFelt-Thin.eot?#iefix') format('embedded-opentype'),
+        url('MarkerFelt-Thin.woff2') format('woff2'),
+        url('MarkerFelt-Thin.woff') format('woff'),
+        url('MarkerFelt-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+

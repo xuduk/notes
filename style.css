@@ -1,0 +1,427 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  height: 100vh;
+  font-family: "Marker Felt", sans-serif;
+}
+
+.flex-wrapper {
+  display: flex;
+  height: 100%;
+}
+
+.notes {
+  background: #fdfdfd;
+  display: flex;
+  flex-grow: 1;
+  text-align: center;
+  align-items: center;
+  font-size: 40px;
+  flex-direction: column;
+  margin-top: 15px;
+  user-select: none;
+  overflow-y: auto;
+  position: relative;
+}
+
+.note {
+  background: #eee8b4;
+  display: flex;
+  flex-grow: 4;
+  font-size: 30px;
+  padding: 25px;
+  padding-bottom: 40px;
+  flex-direction: column;
+  position: relative;
+}
+
+.note-text {
+  width: 100%;
+  height: 100%;
+  font-size: 30px;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  font-family: "Marker Felt", sans-serif;
+}
+
+.notes-list {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.notes-list-el, .notes-list-el-guide {
+  margin: 10px;
+  width: 90%;
+  border: 1px solid black;
+  cursor: pointer;
+  padding: 5px;
+}
+
+.content {
+  width: 90%;
+}
+
+.notes-list-el-guide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+  gap: 10px;
+}
+
+.search-input {
+  height: 35px;
+  border-radius: 35px;
+  border: none;
+  border: 1px solid black;
+  padding: 0 10px;
+  font-family: "Marker Felt", sans-serif;
+  font-size: 18px;
+  width: 60%;
+}
+
+.add-note {
+  margin-left: 20px;
+  background: #754930;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif;
+  padding: 0 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+}
+
+.flex {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#createTime {
+  position: fixed;
+  right: 5px;
+  bottom: 5px;
+}
+
+.open-attachment-modal-btn {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+  display: none;
+}
+
+.removeNote, .removeNoteGuide {
+  width: 35px;
+  height: 40px;
+}
+
+.guideBorder {
+  border-radius: 50%;
+  border: 2px solid red;
+  padding: 10px;
+  padding-bottom: 0;
+}
+
+.arrow-left {
+  display: none;
+  position: fixed;
+  left: 5px;
+  top: 5px;
+  width: 35px;
+  height: 35px;
+}
+
+.modal-overlay {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+  user-select: none;
+}
+
+.modal {
+  background-color: white;
+  padding: 20px;
+  border-radius: 15px;
+  display: flex;
+  gap: 15px;
+  max-width: 70%;
+  max-height: 70%;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.4s, transform 0.4s;
+  padding-top: 45px;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.filesModal img {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+}
+
+.file-upload-label {
+  width: 150px;
+  height: 150px;
+  background-color: #849293;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 120px;
+  font-family: sans-serif;
+}
+
+.file-wrapper {
+  position: relative;
+}
+
+.filesBtns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 35px;
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  background-color: rgba(99, 99, 99, 0.8);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.filesBtns img {
+  width: 30px;
+  height: 30px;
+}
+
+.fileViewWrapper {
+  background-color: white;
+  padding: 20px;
+  border-radius: 15px;
+  display: flex;
+  gap: 15px;
+  max-width: 70%;
+  max-height: 70%;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.4s, transform 0.4s;
+  position: fixed;
+  justify-self: center;
+  align-self: center;
+  pointer-events: none;
+  overflow: auto;
+}
+
+.fileViewWrapper.active {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: all;
+} 
+
+.file-wrapper {
+  position: relative;
+}
+
+.guideModal {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.next-step {
+  width: 40px !important;
+  height: 40px !important;
+  transform: scaleX(-1);
+}
+
+.down-file-img {
+  transform: rotate(-90deg);
+}
+
+.imgView {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.closeIcon {
+  color: #743326;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.closeIcon path {
+  fill: currentColor;
+}
+
+.line-through {
+  text-decoration: line-through ;
+}
+
+.note-text-guide {
+  background-color: #eee8b4;
+  border-radius: 10px;
+  height: 200px;
+  text-align: center;
+  font-size: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.note-text-guide::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+  margin-left: 3px;
+}
+
+.openSettingsBtn {
+  position: absolute;
+  left: 5px;
+  top: 0px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  color: #743326;
+}
+
+.openChartBtn {
+  position: absolute;
+  right: 5px;
+  top: 0px;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  color: #743326;
+}
+
+.openChartBtnGuide {
+  width: 40px;
+  height: 40px;
+}
+
+.openSettingsBtn path {
+  fill: currentColor;
+}
+
+.openChartBtn path {
+  stroke: currentColor;
+}
+
+.openSettingsBtn:active, .openChartBtn:active, .closeIcon:active, .arrow-left:active, .removeNote:active {
+  background-color: rgba(116, 51, 38, 0.6);
+  border-radius: 50%;
+}
+
+.settingsModal {
+  min-height: 70%;
+  min-width: 30%;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.selectLanguageWrapper {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.selectLanguageBtn {
+  background-color: #849293;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.selectLanguageBtn.selected {
+  background-color: aqua;
+}
+
+.chartModal {
+  min-width: 70%;
+  transform: scale(1);
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.file-name {
+  text-align: center;
+}
+
+@keyframes blink {
+  from, to {color: transparent;}
+  50% {color: black;}
+}
+
+@media screen and (max-width: 800px) {
+  .arrow-left {
+    display: block;
+  }
+
+  .note {
+    padding-top: 45px;
+  }
+
+  body {
+    .notes {
+      display: flex;
+    }
+
+    .note {
+      display: none;
+    }
+  }
+
+  body.view-note {
+    .note {
+      display: flex;
+    }
+
+    .notes {
+      display: none;
+    }
+  }
+}
