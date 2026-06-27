@@ -66,13 +66,28 @@ const cachesUrls = [
 ]
 
 self.addEventListener("install", e => {
+    console.log('[SW] install')
+
     e.waitUntil(
-        caches.open(cacheName).then(cache => cache.addAll(cachesUrls))
+        caches.open(cacheName).then(cache => {
+            console.log('[SW] caching files...')
+            return cache.addAll(cachesUrls)
+        })
     )
 })
 
 self.addEventListener("fetch", e => {
+    console.log('[SW] fetch:', e.request.url)
+
     e.respondWith(
-        caches.match(e.request).then(res => res || fetch(e.request))
+        caches.match(e.request).then(res => {
+            if (res) {
+                console.log('[SW] cache hit:', e.request.url)
+                return res
+            }
+
+            console.log('[SW] network fetch:', e.request.url)
+            return fetch(e.request)
+        })
     )
 })
