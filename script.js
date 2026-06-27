@@ -3,7 +3,7 @@ import { getNotes, putNote, putFile, deleteNote, deleteFile } from './modules/db
 import { drawChart } from './modules/chart.js'
 
 $(document).ready(async function () {
-    navigator.serviceWorker.register('/notes/sw.js')
+    navigator.serviceWorker.register('./sw.js')
     let currentNote = "empty"
     let notesQuantity = 0
     let guideStep = 0
