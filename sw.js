@@ -1,4 +1,4 @@
-const cacheName = 'notes-cache-v2'
+const cacheName = 'notes-cache-v3'
 const cachesUrls = [
     '/notes/',
     '/notes/index.html',
